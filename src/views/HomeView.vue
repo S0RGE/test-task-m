@@ -1,7 +1,14 @@
 <template>
-  <div class="home"></div>
+  <div>
+    <bread-crumbs />
+  </div>
 </template>
 
 <script>
-export default {};
+import BreadCrumbs from "@/components/BreadCrumbs.vue";
+export default {
+  components: { BreadCrumbs },
+};
 </script>
+
+<style lang="scss"></style>

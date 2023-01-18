@@ -11,29 +11,29 @@ export default {
   data: () => ({
     items: [
       {
-        title: "Главная",
+        title: 'Главная',
         disabled: false,
-        href: "/",
+        href: '/',
       },
       {
-        title: "Автомобили и мотоциклы",
+        title: 'Автомобили и мотоциклы',
         disabled: false,
-        href: "/",
+        href: '/',
       },
       {
-        title: "Легковые",
+        title: 'Легковые',
         disabled: false,
-        href: "/",
+        href: '/',
       },
       {
-        title: "Tamiya",
+        title: 'Tamiya',
         disabled: false,
-        href: "/",
+        href: '/',
       },
       {
-        title: "Porsche 959",
+        title: 'Porsche 959',
         disabled: true,
-        href: "/",
+        href: '/',
       },
     ],
   }),

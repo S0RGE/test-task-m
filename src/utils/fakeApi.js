@@ -42,7 +42,7 @@ function createProducts() {
       id: CreateUUID(),
       name: 'Сборная модель Экскаватор UDS-114 Tatra',
       price: Math.floor(Math.random() * 10000),
-      image: `@/assets/images/product_image_${Math.floor(
+      image: `assets/images/product_image_${Math.floor(
         Math.random() * 3 + 1
       )}.png`,
       liked: !!Math.round(Math.random()),

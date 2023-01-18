@@ -27,7 +27,7 @@ export default {
 
   .sort-by_title {
     margin-right: 1em;
-    color: #bdbdbd; // $color-secodary-grey;
+    color: #bdbdbd; // $color-secondary-grey;
   }
 
   .sort-by_item {

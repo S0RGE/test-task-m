@@ -2,11 +2,19 @@
   <div class="price-display">
     <div class="price-display_from">
       <span class="price-display_text">От</span>
-      <span class="price-display_value">{{ priceMin }}</span>
+      <input
+        class="price-display_value"
+        v-model="minPrice"
+        @input="setMinPrice"
+      />
     </div>
     <div class="price-display_to">
       <span class="price-display_text">До</span>
-      <span class="price-display_value">{{ priceMax }}</span>
+      <input
+        class="price-display_value"
+        v-model="minPrice"
+        @input="setMinPrice"
+      />
     </div>
   </div>
   <div class="price-slider"></div>
@@ -16,14 +24,20 @@
 export default {
   data() {
     return {
-      priceMin: 0,
-      priceMax: 100,
+      minPrice: 0,
+      maxPrice: 10000,
     };
   },
-  watch: {
-    priceValues() {
-      // TODO:create
-      console.log('Price values: ', this.priceValues);
+  emits: {
+    'set-min-price': (value) => typeof value === 'string',
+    'set-max-price': (value) => typeof value === 'string',
+  },
+  methods: {
+    setMinPrice() {
+      this.$emit('set-min-price', this.minPrice);
+    },
+    setMaxPrice() {
+      this.$emit('set-max-price', this.maxPrice);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="product-catalog_wrapper">
-    <product-catalog-filter-display />
+    <product-catalog-filter-display :filters="formattedFilters" />
     <product-catalog-sort-by />
     <div class="product-catalog">
       <product-catalog-card
@@ -31,6 +31,15 @@ export default {
       type: Number,
       required: true,
     },
+    filters: {
+      type: Object,
+      default: () => ({
+        category: '',
+        companies: [],
+        priceLimit: [0, 10000],
+        inStock: false,
+      }),
+    },
   },
   components: {
     ProductCatalogCard,
@@ -38,14 +47,55 @@ export default {
     ProductCatalogSortBy,
   },
   computed: {
+    filteredProducts() {
+      let result = this.products;
+      // фильтр по категориям
+      if (this.filters.category) {
+        result = this.products.filter(
+          (product) => product?.category === this.filters.category
+        );
+      }
+      // фильтр по наличию
+      if (this.filters.inStock) {
+        result = result.filter(
+          (product) => product.inStock === this.filters.inStock
+        );
+      }
+      // фильтр по компании
+      if (this.filters.companies.length)
+        result = result.filter((product) =>
+          this.filters.companies.includes(product.company)
+        );
+
+      // фильтр по цене
+      // result = result.filter(
+      //   (product) =>
+      //     product.price <= this.filters.priceLimit[1] &&
+      //     product.price >= this.filters.priceLimit[0]
+      // );
+      return result;
+    },
     paginatedProducts() {
-      return this.products.slice(this.startIndex, this.endIndex);
+      return this.filteredProducts.slice(this.startIndex, this.endIndex);
     },
     startIndex() {
       return (this.page - 1) * this.productsPerPage;
     },
     endIndex() {
       return this.page * this.productsPerPage;
+    },
+    formattedFilters() {
+      // return this.filters;
+      return [
+        'Цена: от 321 до  10 203',
+        'Легковая техника',
+        'Легковая техника',
+        'Start Scale Models (SSM)',
+        'Bronco',
+        '1:43',
+        '1:72',
+        '1:32',
+      ];
     },
   },
 };

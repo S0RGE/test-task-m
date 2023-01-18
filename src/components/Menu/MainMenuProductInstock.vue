@@ -1,7 +1,7 @@
 <template>
   <div class="switch-wrapper">
     <label class="switch">
-      <input type="checkbox" />
+      <input type="checkbox" @change="setInstockFilter" v-model="instock" />
       <span class="slider round"></span>
     </label>
   </div>
@@ -9,7 +9,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      instock: false,
+    };
+  },
+  emits: {
+    'set-instock': (value) => typeof value === 'boolean',
+  },
+  methods: {
+    setInstockFilter() {
+      this.$emit('set-instock', this.instock);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -14,16 +14,19 @@
       <main-menu-product-scale />
     </div>
     <div class="product-filter price-filter">
-      <main-menu-price-filter />
+      <main-menu-price-filter
+        @set-max-price="setMaxPrice"
+        @set-min-price="setMinPrice"
+      />
     </div>
     <div class="product-filter in-stock">
-      <main-menu-product-instock />
+      <main-menu-product-instock @set-instock="setInstockFilter" />
     </div>
     <div class="product-per-page">
-      <main-menu-products-per-page />
+      <main-menu-products-per-page @set-products-per-page="setProductPerPage" />
     </div>
     <div class="reset-filters">
-      <button>Сбросить товары</button>
+      <button @click="resetFilter">Сбросить товары</button>
     </div>
     <div class="liked-filter">Сохранить подборку &#x2764;</div>
   </div>
@@ -43,6 +46,8 @@ export default {
       filters: {
         category: '',
         companies: [],
+        priceLimit: [0, 10000],
+        inStock: false,
       },
     };
   },
@@ -54,9 +59,18 @@ export default {
     MainMenuPriceFilter,
     MainMenuProductsPerPage,
   },
+  emits: {
+    'set-product-per-page': (value) => typeof value === 'string',
+    'update-filters': (value) => typeof value === 'object',
+  },
   methods: {
     setCategoryFilter(categoryIndex) {
       this.filters.category = this.categories[categoryIndex];
+      this.updateFilters();
+    },
+    setInstockFilter(instock) {
+      this.filters.inStock = instock;
+      this.updateFilters();
     },
     setCompanyFilter(company) {
       if (company.checked) {
@@ -64,6 +78,30 @@ export default {
       } else {
         this.filters.companies.splice(company.index, 1);
       }
+      this.updateFilters();
+    },
+    setMaxPrice(price) {
+      this.filters.priceLimit[1] = price;
+      this.updateFilters();
+    },
+    setMinPrice(price) {
+      this.filters.priceLimit[0] = price;
+      this.updateFilters();
+    },
+    setProductPerPage(quantity) {
+      this.$emit('set-product-per-page', quantity);
+    },
+    updateFilters() {
+      this.$emit('update-filters', this.filters);
+    },
+    resetFilter() {
+      this.filters = {
+        category: '',
+        companies: [],
+        priceLimit: [0, 10000],
+        inStock: false,
+      };
+      this.updateFilters();
     },
   },
   computed: {

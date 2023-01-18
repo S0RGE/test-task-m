@@ -6,7 +6,9 @@
     >
       &#x2764;
     </div>
-    <div class="product-card_image"></div>
+    <div class="product-card_image">
+      <img :src="getImage()" alt="img" />
+    </div>
     <div class="product-card_data">
       <div class="product-card_price">{{ product.price }} &#8381;</div>
       <p>{{ product.name }}</p>
@@ -28,6 +30,11 @@ export default {
   props: {
     product: {
       type: Object,
+    },
+  },
+  methods: {
+    getImage() {
+      return require(`../../${this.product.image}`);
     },
   },
 };
@@ -63,7 +70,7 @@ export default {
   .product-card_image {
     width: 100%;
     height: 202px;
-    background: url('@/assets/images/product_image_1.png') center no-repeat;
+    // background: url('@/assets/images/product_image_1.png') center no-repeat;
     border-top-right-radius: 16px;
     border-top-left-radius: 16px;
   }

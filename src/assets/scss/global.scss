@@ -1,3 +1,7 @@
+$color-primary-default: #279fb9 !global;
+$color-primary-black: #333333 !global;
+$color-secondary-grey: #bdbdbd !global;
+
 * {
   margin: 0;
   padding: 0;
@@ -26,9 +30,19 @@
       font-size: 14px;
       line-height: 20px;
 
-      color: $color-secodary-grey;
+      color: $color-secondary-grey;
     }
   }
+}
+
+// HEADER
+.header {
+  margin-bottom: 24px;
+}
+
+// MAIN
+#app {
+  background-color: #fafafa;
 }
 
 // MAIN MENU
@@ -106,7 +120,7 @@
     font-size: 12px;
     line-height: 16px;
     margin-left: 6px;
-    color: #bdbdbd; //$color-secodary-grey
+    color: #bdbdbd; //$color-secondary-grey
   }
 
   [type='checkbox'] {

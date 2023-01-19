@@ -1,9 +1,14 @@
 <template>
   <div class="catalog_sort-by">
     <span class="sort-by_title">Сортировать по: </span>
-    <span class="sort-by_item" v-for="item in sortItems" :key="item">{{
-      item
-    }}</span>
+    <span
+      class="sort-by_item"
+      :class="{ active: index === selectedSort }"
+      @click="setSort(item, index)"
+      v-for="(item, index) in sortItems"
+      :key="item.name"
+      >{{ item.value }}</span
+    >
   </div>
 </template>
 
@@ -11,8 +16,29 @@
 export default {
   data() {
     return {
-      sortItems: ['Популярности', 'Рейтингу', 'Цене', 'Скидке', 'Обновлению'],
+      selectedSort: '',
+      sortItems: [
+        { name: 'popular', value: 'Популярности' },
+        { name: 'raiting', value: 'Рейтингу' },
+        { name: 'price', value: 'Цене' },
+        { name: 'discount', value: 'Скидке' },
+        { name: 'updated', value: 'Обновлению' },
+      ],
     };
+  },
+  emits: {
+    'set-sort-by': (value) => typeof value === 'string',
+  },
+  methods: {
+    setSort(sortBy, index) {
+      if (this.selectedSort === index) {
+        this.selectedSort = null;
+        this.$emit('set-sort-by', {});
+      } else {
+        this.selectedSort = index;
+        this.$emit('set-sort-by', sortBy);
+      }
+    },
   },
 };
 </script>
@@ -32,6 +58,11 @@ export default {
 
   .sort-by_item {
     color: #333333; // $color-primary-black;
+    cursor: pointer;
+  }
+
+  .sort-by_item.active {
+    color: #279fb9;
   }
 
   .sort-by_item + .sort-by_item {

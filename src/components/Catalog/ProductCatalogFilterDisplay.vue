@@ -1,8 +1,12 @@
 <template>
   <div class="filter-display">
-    <div class="filter-display_item" v-for="filter in filters" :key="filter">
-      {{ filter }}
-      <span class="display-close">&#215;</span>
+    <div
+      class="filter-display_item"
+      v-for="filter in formattedFilters"
+      :key="filter.name"
+    >
+      {{ filter.value }}
+      <span class="display-close" @click="deleteFilter(filter)">&#215;</span>
     </div>
   </div>
 </template>
@@ -11,19 +15,41 @@
 export default {
   props: {
     filters: {
-      type: Array,
-      default: () => {
-        return [
-          'Цена: от 321 до  10 203',
-          'Легковая техника',
-          'Легковая техника',
-          'Start Scale Models (SSM)',
-          'Bronco',
-          '1:43',
-          '1:72',
-          '1:32',
-        ];
-      },
+      type: Object,
+    },
+  },
+  methods: {
+    deleteFilter(filter) {
+      const editedFilters = { ...this.filters };
+
+      console.log(filter, editedFilters);
+    },
+  },
+  computed: {
+    formattedFilters() {
+      const formatFilters = [];
+
+      for (const key in this.filters) {
+        if (typeof this.filters[key] === 'string' && this.filters[key]) {
+          formatFilters.push({
+            name: key,
+            value: this.filters[key],
+          });
+        } else if (key === 'priceLimit') {
+          formatFilters.push({
+            name: key,
+            value: `Цена: от ${this.filters[key][0]} до ${this.filters[key][1]}`,
+          });
+        } else if (Array.isArray(this.filters[key])) {
+          this.filters[key].forEach((filter) => {
+            formatFilters.push({
+              name: key,
+              value: filter,
+            });
+          });
+        }
+      }
+      return formatFilters;
     },
   },
 };

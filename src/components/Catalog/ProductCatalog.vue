@@ -1,7 +1,7 @@
 <template>
   <div class="product-catalog_wrapper">
-    <product-catalog-filter-display :filters="formattedFilters" />
-    <product-catalog-sort-by />
+    <product-catalog-filter-display :filters="filters" />
+    <product-catalog-sort-by @set-sort-by="setSortBy" />
     <div class="product-catalog">
       <product-catalog-card
         v-for="product in paginatedProducts"
@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       page: 1,
+      sortBy: '',
     };
   },
   props: {
@@ -33,6 +34,20 @@ export default {
     ProductCatalogCard,
     ProductCatalogFilterDisplay,
     ProductCatalogSortBy,
+  },
+  methods: {
+    setSortBy(sortBy) {
+      this.sortBy = sortBy;
+    },
+    sortProducts(products) {
+      let result = [...products];
+      result.sort((a, b) => {
+        console.log('a < b: ', a[this.sortBy.name] < b[this.sortBy.name]);
+        return a[this.sortBy.name] - b[this.sortBy.name];
+      });
+
+      return result;
+    },
   },
   computed: {
     filteredProducts() {
@@ -64,26 +79,16 @@ export default {
       return result;
     },
     paginatedProducts() {
-      return this.filteredProducts.slice(this.startIndex, this.endIndex);
+      return this.sortProducts(this.filteredProducts).slice(
+        this.startIndex,
+        this.endIndex
+      );
     },
     startIndex() {
       return (this.page - 1) * this.productsPerPage;
     },
     endIndex() {
       return this.page * this.productsPerPage;
-    },
-    formattedFilters() {
-      // return this.filters;
-      return [
-        'Цена: от 321 до  10 203',
-        'Легковая техника',
-        'Легковая техника',
-        'Start Scale Models (SSM)',
-        'Bronco',
-        '1:43',
-        '1:72',
-        '1:32',
-      ];
     },
     filters() {
       return this.$store.getters.getFilters;

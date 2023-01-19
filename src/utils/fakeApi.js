@@ -36,7 +36,7 @@ export const getCompanies = () => {
 
 function createProducts() {
   const products = [];
-  const quantity = 123;
+  const quantity = 133;
   for (let i = 0; i < quantity; i++) {
     products.push({
       id: CreateUUID(),

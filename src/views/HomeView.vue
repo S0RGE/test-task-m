@@ -4,14 +4,10 @@
       <catalog-header />
     </header>
     <main class="main">
-      <main-menu
-        @set-product-per-page="setProductPerPage"
-        @update-filters="updateFilters"
-      />
+      <main-menu @set-product-per-page="setProductPerPage" />
       <product-catalog
         :products="products"
         :products-per-page="productsPerPage"
-        :filters="filters"
       />
     </main>
   </v-container>
@@ -26,12 +22,6 @@ export default {
   data() {
     return {
       productsPerPage: 10,
-      filters: {
-        category: '',
-        companies: [],
-        priceLimit: [0, 10000],
-        inStock: false,
-      },
     };
   },
   methods: {
@@ -41,9 +31,6 @@ export default {
       } else {
         this.productsPerPage = this.productsCount;
       }
-    },
-    updateFilters(filters) {
-      this.filters = filters;
     },
   },
   components: {

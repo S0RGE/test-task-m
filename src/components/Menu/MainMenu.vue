@@ -42,14 +42,7 @@ import MainMenuProductsPerPage from './MainMenuProductsPerPage.vue';
 
 export default {
   data() {
-    return {
-      filters: {
-        category: '',
-        companies: [],
-        priceLimit: [0, 10000],
-        inStock: false,
-      },
-    };
+    return {};
   },
   components: {
     MainMenuCategory,
@@ -61,7 +54,6 @@ export default {
   },
   emits: {
     'set-product-per-page': (value) => typeof value === 'string',
-    'update-filters': (value) => typeof value === 'object',
   },
   methods: {
     setCategoryFilter(categoryIndex) {
@@ -92,7 +84,7 @@ export default {
       this.$emit('set-product-per-page', quantity);
     },
     updateFilters() {
-      this.$emit('update-filters', this.filters);
+      this.$store.dispatch('ADD_FILTERS', this.filters);
     },
     resetFilter() {
       this.filters = {
@@ -110,6 +102,9 @@ export default {
     },
     companies() {
       return this.$store.getters.getCompanies;
+    },
+    filters() {
+      return this.$store.getters.getFilters;
     },
   },
 };

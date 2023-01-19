@@ -31,15 +31,15 @@ export default {
       type: Number,
       required: true,
     },
-    filters: {
-      type: Object,
-      default: () => ({
-        category: '',
-        companies: [],
-        priceLimit: [0, 10000],
-        inStock: false,
-      }),
-    },
+    // filters: {
+    //   type: Object,
+    //   default: () => ({
+    //     category: '',
+    //     companies: [],
+    //     priceLimit: [0, 10000],
+    //     inStock: false,
+    //   }),
+    // },
   },
   components: {
     ProductCatalogCard,
@@ -96,6 +96,9 @@ export default {
         '1:72',
         '1:32',
       ];
+    },
+    filters() {
+      return this.$store.getters.getFilters;
     },
   },
 };

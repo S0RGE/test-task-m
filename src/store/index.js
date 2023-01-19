@@ -7,14 +7,24 @@ export default createStore({
     products: [],
     categories: [],
     companies: [],
+    filters: {
+      category: '',
+      companies: [],
+      priceLimit: [0, 10000],
+      inStock: false,
+    },
   },
   getters: {
     getProducts: (state) => state.products,
     getCart: (state) => state.cart,
     getCategories: (state) => state.categories,
     getCompanies: (state) => state.companies,
+    getFilters: (state) => state.filters,
   },
   actions: {
+    ADD_FILTERS: ({ commit }, filters) => {
+      commit('ADD_FILTERS', filters);
+    },
     ADD_PROUCT_TO_CART: ({ commit }, product) => {
       commit('ADD_PROUCT_TO_CART', product);
     },
@@ -32,6 +42,9 @@ export default createStore({
     },
   },
   mutations: {
+    ADD_FILTERS: (state, filters) => {
+      state.filters = filters;
+    },
     GET_COMPANIES: (state, companies) => {
       state.companies = companies;
     },

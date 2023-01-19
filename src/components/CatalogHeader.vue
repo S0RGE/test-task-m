@@ -10,8 +10,11 @@ import BreadCrumbs from './BreadCrumbs.vue';
 export default {
   data() {
     return {
-      productCount: 123,
+      productCount: 0,
     };
+  },
+  mounted() {
+    this.productCount = this.$store.getters.getProducts.length;
   },
   components: { BreadCrumbs },
 };

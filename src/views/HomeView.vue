@@ -5,10 +5,7 @@
     </header>
     <main class="main">
       <main-menu @set-product-per-page="setProductPerPage" />
-      <product-catalog
-        :products="products"
-        :products-per-page="productsPerPage"
-      />
+      <product-catalog :products-per-page="productsPerPage" />
     </main>
   </v-container>
 </template>
@@ -42,9 +39,6 @@ export default {
     this.$store.dispatch('GET_PRODUCTS');
   },
   computed: {
-    products() {
-      return this.$store.getters.getProducts;
-    },
     productsCount() {
       return this.products.length;
     },

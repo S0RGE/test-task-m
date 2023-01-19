@@ -57,43 +57,55 @@ export default {
   },
   methods: {
     setCategoryFilter(categoryIndex) {
-      this.filters.category = this.categories[categoryIndex];
-      this.updateFilters();
+      const updatedFilters = {
+        ...this.filters,
+        category: this.categories[categoryIndex],
+      };
+      this.updateFilters(updatedFilters);
     },
     setInstockFilter(instock) {
-      this.filters.inStock = instock;
-      this.updateFilters();
+      const updatedFilters = { ...this.filters, inStock: instock };
+      this.updateFilters(updatedFilters);
     },
-    setCompanyFilter(company) {
-      if (company.checked) {
-        this.filters.companies.push(this.companies[company.index]);
+    setCompanyFilter(editedCompany) {
+      const updatedFilters = { ...this.filters };
+
+      const companyIndex = this.filters.companies.findIndex(
+        (company) => company === editedCompany.name
+      );
+
+      if (companyIndex === -1) {
+        updatedFilters.companies.push(editedCompany.name);
       } else {
-        this.filters.companies.splice(company.index, 1);
+        updatedFilters.companies.splice(companyIndex, 1);
       }
-      this.updateFilters();
+
+      this.updateFilters(updatedFilters);
     },
     setMaxPrice(price) {
-      this.filters.priceLimit[1] = price;
-      this.updateFilters();
+      const updatedFilters = this.filters;
+      updatedFilters.priceLimit[1] = price;
+      this.updateFilters(updatedFilters);
     },
     setMinPrice(price) {
-      this.filters.priceLimit[0] = price;
-      this.updateFilters();
+      const updatedFilters = this.filters;
+      updatedFilters.priceLimit[0] = price;
+      this.updateFilters(updatedFilters);
     },
     setProductPerPage(quantity) {
       this.$emit('set-product-per-page', quantity);
     },
-    updateFilters() {
-      this.$store.dispatch('ADD_FILTERS', this.filters);
+    updateFilters(filters) {
+      this.$store.dispatch('ADD_FILTERS', filters);
     },
     resetFilter() {
-      this.filters = {
+      const resetFilters = {
         category: '',
         companies: [],
         priceLimit: [0, 10000],
         inStock: false,
       };
-      this.updateFilters();
+      this.updateFilters(resetFilters);
     },
   },
   computed: {

@@ -13,21 +13,21 @@
       v-for="(company, index) in filteredCompanies"
       :key="company"
       class="companies-filter_item"
-      ref="companyFilterItems"
     >
-      <input
-        @change="setCompanyFilter(index)"
-        type="checkbox"
-        :id="`company_${index}`"
+      <company-item
+        :company="company"
+        :index="index"
+        @set-company-filter="setCompanyFilter"
       />
-      <label :for="`company_${index}`"> {{ company }} </label>
-      <span> 12 </span>
     </div>
   </div>
 </template>
 
 <script>
+import CompanyItem from './CompanyItem.vue';
+
 export default {
+  components: { CompanyItem },
   data() {
     return {
       companyFilter: '',
@@ -47,10 +47,8 @@ export default {
     onInput(search) {
       this.companyFilter = search;
     },
-    setCompanyFilter(companyIndex) {
-      const checked =
-        this.$refs.companyFilterItems[companyIndex].children[0].checked;
-      this.$emit('set-company-filter', { index: companyIndex, checked });
+    setCompanyFilter(company) {
+      this.$emit('set-company-filter', company);
     },
   },
   created() {

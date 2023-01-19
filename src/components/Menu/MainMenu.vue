@@ -14,10 +14,7 @@
       <main-menu-product-scale />
     </div>
     <div class="product-filter price-filter">
-      <main-menu-price-filter
-        @set-max-price="setMaxPrice"
-        @set-min-price="setMinPrice"
-      />
+      <main-menu-price-filter @set-price-range="setPriceRange" />
     </div>
     <div class="product-filter in-stock">
       <main-menu-product-instock @set-instock="setInstockFilter" />
@@ -57,10 +54,15 @@ export default {
   },
   methods: {
     setCategoryFilter(categoryIndex) {
-      const updatedFilters = {
-        ...this.filters,
-        category: this.categories[categoryIndex],
-      };
+      let updatedFilters = { ...this.filters };
+      if (!categoryIndex) {
+        updatedFilters = { ...updatedFilters, category: '' };
+      } else {
+        updatedFilters = {
+          ...this.filters,
+          category: this.categories[categoryIndex],
+        };
+      }
       this.updateFilters(updatedFilters);
     },
     setInstockFilter(instock) {
@@ -80,6 +82,11 @@ export default {
         updatedFilters.companies.splice(companyIndex, 1);
       }
 
+      this.updateFilters(updatedFilters);
+    },
+    setPriceRange(priceRange) {
+      const updatedFilters = this.filters;
+      updatedFilters.priceLimit = priceRange;
       this.updateFilters(updatedFilters);
     },
     setMaxPrice(price) {

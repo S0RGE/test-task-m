@@ -18,7 +18,7 @@ export default {
     return {
       selectedSort: '',
       sortItems: [
-        { name: 'popular', value: 'Популярности' },
+        { name: 'messages', value: 'Популярности' },
         { name: 'raiting', value: 'Рейтингу' },
         { name: 'price', value: 'Цене' },
         { name: 'discount', value: 'Скидке' },

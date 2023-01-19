@@ -1,12 +1,15 @@
 <template>
-  <input
-    @change="setCompanyFilter(index)"
-    type="checkbox"
-    :id="`company_${index}`"
+  <v-checkbox
     v-model="companyEnters"
-  />
-  <label :for="`company_${index}`"> {{ company }} </label>
-  <span> 12 </span>
+    color="red"
+    value="false"
+    inline="true"
+    hide-details="true"
+    density="true"
+    @click="setCompanyFilter"
+    :label="company"
+  ></v-checkbox>
+  <span> {{ itemsCount }} </span>
 </template>
 
 <script>
@@ -15,8 +18,8 @@ export default {
     company: {
       type: String,
     },
-    index: {
-      type: Number,
+    itemsCount: {
+      type: String,
     },
   },
   emits: {
@@ -39,4 +42,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.mdi-checkbox-marked::before {
+  color: #279fb9;
+}
+.v-label.v-label--clickable {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  opacity: 1;
+}
+</style>

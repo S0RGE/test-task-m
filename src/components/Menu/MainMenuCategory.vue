@@ -34,7 +34,11 @@ export default {
   },
   methods: {
     setCategory(indexOfCategory) {
-      this.activeCategory = indexOfCategory;
+      if (this.activeCategory === indexOfCategory) {
+        this.activeCategory = null;
+      } else {
+        this.activeCategory = indexOfCategory;
+      }
       this.$emit('set-category-filter', indexOfCategory);
     },
   },

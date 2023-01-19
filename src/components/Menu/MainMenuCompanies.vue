@@ -10,13 +10,13 @@
   ></v-text-field>
   <div class="companies-filter">
     <div
-      v-for="(company, index) in filteredCompanies"
+      v-for="company in filteredCompanies"
       :key="company"
       class="companies-filter_item"
     >
-      <company-item
+      <menu-item
+        :items-count="getCompanyProductCount(company)"
         :company="company"
-        :index="index"
         @set-company-filter="setCompanyFilter"
       />
     </div>
@@ -24,14 +24,13 @@
 </template>
 
 <script>
-import CompanyItem from './CompanyItem.vue';
+import MenuItem from './MenuItem.vue';
 
 export default {
-  components: { CompanyItem },
+  components: { MenuItem },
   data() {
     return {
       companyFilter: '',
-      checkbox1: false,
     };
   },
   props: {
@@ -50,6 +49,17 @@ export default {
     setCompanyFilter(company) {
       this.$emit('set-company-filter', company);
     },
+    getCompanyProductCount(company) {
+      const result = this.products.reduce((acc, item) => {
+        // debugger;
+        if (item.company === company) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+
+      return result;
+    },
   },
   created() {
     this.$store.dispatch('GET_COMPANIES');
@@ -59,6 +69,9 @@ export default {
       return this.companies.filter((company) =>
         company.toLowerCase().includes(this.companyFilter.toLowerCase())
       );
+    },
+    products() {
+      return this.$store.getters.getProducts;
     },
   },
 };

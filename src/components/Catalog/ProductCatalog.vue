@@ -42,7 +42,6 @@ export default {
     sortProducts(products) {
       let result = [...products];
       result.sort((a, b) => {
-        console.log('a < b: ', a[this.sortBy.name] < b[this.sortBy.name]);
         return a[this.sortBy.name] - b[this.sortBy.name];
       });
 
@@ -71,11 +70,11 @@ export default {
         );
 
       // фильтр по цене
-      // result = result.filter(
-      //   (product) =>
-      //     product.price <= this.filters.priceLimit[1] &&
-      //     product.price >= this.filters.priceLimit[0]
-      // );
+      result = result.filter(
+        (product) =>
+          product.price <= this.filters.priceLimit[1] &&
+          product.price >= this.filters.priceLimit[0]
+      );
       return result;
     },
     paginatedProducts() {

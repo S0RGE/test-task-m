@@ -1,69 +1,87 @@
 <template>
   <div class="price-display">
-    <div class="price-display_from">
+    <div class="price-display_item">
       <span class="price-display_text">От</span>
       <input
         class="price-display_value"
-        v-model="minPrice"
-        @input="setMinPrice"
+        v-model="priceRange[0]"
+        @input="setPriceRange"
       />
     </div>
-    <div class="price-display_to">
+    <div class="price-display_item">
       <span class="price-display_text">До</span>
       <input
         class="price-display_value"
-        v-model="minPrice"
-        @input="setMinPrice"
+        v-model="priceRange[1]"
+        @input="setPriceRange"
       />
     </div>
   </div>
-  <div class="price-slider"></div>
+  <div class="price-slider">
+    <v-range-slider
+      :step="1"
+      v-model="priceRange"
+      :min="0"
+      :max="10000"
+      color="#279fb9"
+    ></v-range-slider>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      minPrice: 0,
-      maxPrice: 10000,
+      priceRange: [0, 10000],
     };
   },
   emits: {
-    'set-min-price': (value) => typeof value === 'string',
-    'set-max-price': (value) => typeof value === 'string',
+    'set-price-range': (value) => typeof value === 'object',
   },
   methods: {
-    setMinPrice() {
-      this.$emit('set-min-price', this.minPrice);
+    setPriceRange() {
+      this.$emit('set-price-range', this.priceRange);
     },
-    setMaxPrice() {
-      this.$emit('set-max-price', this.maxPrice);
+  },
+  watch: {
+    priceRange() {
+      this.setPriceRange();
     },
   },
 };
 </script>
 
 <style lang="scss">
-.price-slider {
-  position: relative;
+.price-display {
+  display: flex;
+  column-gap: 12px;
 
-  input {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    pointer-events: none;
-    // -webkit-appearance: none;
+  .price-display_text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #757575;
+    margin-bottom: 4px;
   }
 
-  input[type='range']::-webkit-slider-thumb {
-    pointer-events: auto;
-    -webkit-appearance: none;
+  .price-display_item {
+    display: flex;
+    flex-direction: column;
   }
 
-  input[type='range']::-moz-range-thumb {
-    pointer-events: auto;
-    -moz-appearance: none;
+  .price-display_value {
+    border: 1px solid #e0e0e0;
+    border-radius: 9px;
+
+    width: 98px;
+    height: 36px;
+
+    padding: 8px 12px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 </style>

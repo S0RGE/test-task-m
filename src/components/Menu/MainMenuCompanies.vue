@@ -1,10 +1,11 @@
 <template>
   <h3 class="menu-item_header">Производитель</h3>
   <v-text-field
+    class="mt-2"
     hide-details="auto"
     variant="outlined"
     density="compact"
-    rounded
+    append-inner-icon="mdi-magnify"
     @change="onInput"
     v-model="companyFilter"
   ></v-text-field>

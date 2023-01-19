@@ -120,10 +120,79 @@ $color-secondary-grey: #bdbdbd !global;
     font-size: 12px;
     line-height: 16px;
     margin-left: 6px;
-    color: #bdbdbd; //$color-secondary-grey
+    color: $color-secondary-grey;
   }
 }
 
-// .companies-filter_item + .companies-filter_item {
-//   margin-top: 4px;
-// }
+.main-menu_per-page {
+  position: relative;
+
+  p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #757575;
+    margin-bottom: 4px;
+  }
+
+  .down-icon {
+    transform: rotate(90deg);
+    position: absolute;
+    right: 10px;
+    top: 27px;
+  }
+
+  .down-icon::before {
+    font-size: 32px;
+    z-index: -1;
+  }
+}
+
+.main-menu_per-page_select {
+  width: 208px;
+  height: 36px;
+
+  background: #ffffff;
+
+  border: 1px solid #e0e0e0;
+  border-radius: 9px;
+
+  padding: 8px 12px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: $color-primary-black;
+}
+
+.reset-filters_button {
+  width: 208px;
+  height: 36px;
+
+  border: 2px solid #bdbdbd;
+  border-radius: 9px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  margin-top: 24px;
+}
+
+.liked-filter {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 32px;
+
+  text-align: center;
+
+  cursor: pointer;
+}
+
+// PRODUCT
+
+.mdi-star::before {
+  color: #fed833;
+}

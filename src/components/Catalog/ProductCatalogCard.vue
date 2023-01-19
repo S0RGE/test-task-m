@@ -1,25 +1,43 @@
 <template>
-  <div class="product-card">
-    <div
-      class="product-card_liked"
-      :class="{ 'product-card_like': product.liked }"
-    >
-      &#x2764;
-    </div>
-    <div class="product-card_image">
-      <img :src="getImage()" alt="img" />
-    </div>
-    <div class="product-card_data">
-      <div class="product-card_price">{{ product.price }} &#8381;</div>
-      <p>{{ product.name }}</p>
-      <div class="product-card_scale">
-        <span class="product-card_scale_badge">1:43</span> AVD Models
+  <div class="product-card_wrapper">
+    <div class="product-card">
+      <div
+        class="product-card_liked"
+        :class="{ 'product-card_like': product.liked }"
+      >
+        <v-icon icon="mdi-cards-heart"></v-icon>
       </div>
-      <div class="product-card_rating">
-        <div class="product-card_stars" style="color: yellow">
-          &#9734;&#9734;&#9734;&#9734;&#9734;
+      <div class="product-card_image">
+        <img :src="getImage()" alt="img" />
+      </div>
+      <div class="product-card_data">
+        <div class="product-card_price">{{ product.price }} &#8381;</div>
+        <p>{{ product.name }}</p>
+        <div class="product-card_scale">
+          <span class="product-card_scale_badge"
+            >1:{{ product.scale.value }}</span
+          >
+          <span>AVD Models </span>
         </div>
-        <div class="product-card_review">{{ product.messages }} отзывов</div>
+        <div class="product-card_rating">
+          <div class="product-card_stars" style="color: yellow">
+            <v-rating
+              model-value="product.raiting"
+              size="small"
+              density="compact"
+              v-model="raiting"
+            ></v-rating>
+          </div>
+          <div class="product-card_review">{{ product.messages }} отзывов</div>
+        </div>
+      </div>
+      <div class="card-action">
+        <button
+          @click="toggleCard"
+          :class="isInCart ? 'in-cart' : 'not-in-cart'"
+        >
+          {{ isInCart ? 'В корзине' : 'В корзину' }}
+        </button>
       </div>
     </div>
   </div>
@@ -27,52 +45,114 @@
 
 <script>
 export default {
+  data() {
+    return {
+      raiting: 0,
+    };
+  },
   props: {
     product: {
       type: Object,
+    },
+    isInCart: {
+      type: Boolean,
     },
   },
   methods: {
     getImage() {
       return require(`../../${this.product.image}`);
     },
+    toggleCard() {
+      this.$store.dispatch('TOGGLE_CARD', this.product.id);
+    },
+  },
+  created() {
+    this.raiting = this.product.raiting;
   },
 };
 </script>
 
 <style lang="scss">
-.product-card {
+.product-card_wrapper {
   position: relative;
+  min-height: 382px;
+}
 
+.product-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  transition: all 0.7ms;
   display: flex;
   flex-direction: column;
 
-  height: 382px;
   width: 100%;
 
   filter: drop-shadow(1px 1px 15px rgba(0, 0, 0, 0.1));
   border-radius: 16px;
   background-color: #fff;
 
-  .product-card_liked {
-    position: absolute;
-    width: 18px;
-    height: 16px;
-    right: 17px;
-    top: 0;
-    font-size: 2rem;
-    &.product-card_like {
-      color: #ff0000;
-      cursor: pointer;
+  .product-card_liked,
+  .card-action {
+    display: none;
+  }
+
+  &:hover {
+    .product-card_liked {
+      display: block;
+      position: absolute;
+      width: 18px;
+      height: 16px;
+      right: 7px;
+      top: 4px;
+
+      font-size: 12px;
+
+      .mdi-cards-heart::before {
+        cursor: pointer;
+        color: #fff;
+      }
+    }
+
+    .card-action {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      gap: 10px;
+
+      button {
+        width: 244px;
+        height: 32px;
+        align-self: center;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button.not-in-cart {
+        background: #279fb9;
+
+        color: #fff;
+      }
+
+      button.in-cart {
+        background: #ffc020;
+
+        color: #333333;
+      }
     }
   }
 
   .product-card_image {
     width: 100%;
     height: 202px;
-    // background: url('@/assets/images/product_image_1.png') center no-repeat;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
+    img {
+      border-top-right-radius: 16px;
+      border-top-left-radius: 16px;
+    }
   }
 
   .product-card_data {
@@ -93,10 +173,19 @@ export default {
       font-size: 12px;
       line-height: 16px;
       color: #333333;
+      margin: 8px 0 20px 0;
+    }
+
+    .product-card_scale {
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+      height: 24px;
+      margin-bottom: 8px;
     }
 
     .product-card_scale_badge {
-      display: inline-block;
+      display: flex;
       width: 40px;
       height: 24px;
       line-height: 24px;

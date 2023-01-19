@@ -23,9 +23,14 @@
       <main-menu-products-per-page @set-products-per-page="setProductPerPage" />
     </div>
     <div class="reset-filters">
-      <button @click="resetFilter">Сбросить товары</button>
+      <button class="reset-filters_button" @click="resetFilter">
+        Сбросить товары
+      </button>
     </div>
-    <div class="liked-filter">Сохранить подборку &#x2764;</div>
+    <div class="liked-filter">
+      Сохранить подборку
+      <v-icon icon="mdi-cards-heart-outline"></v-icon>
+    </div>
   </div>
 </template>
 
@@ -38,9 +43,6 @@ import MainMenuProductScale from './MainMenuProductScale.vue';
 import MainMenuProductsPerPage from './MainMenuProductsPerPage.vue';
 
 export default {
-  data() {
-    return {};
-  },
   components: {
     MainMenuCategory,
     MainMenuCompanies,

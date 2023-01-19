@@ -1,11 +1,19 @@
 <template>
-  <p>Показывать на странице</p>
-  <select v-model="productsPerPage" @change="setProductsPerPage">
-    <option value="10">10</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
-    <option value="All">Все</option>
-  </select>
+  <div class="main-menu_per-page">
+    <p>Показывать на странице</p>
+    <select
+      class="main-menu_per-page_select"
+      v-model="productsPerPage"
+      @change="setProductsPerPage"
+    >
+      <option value="10">10 товаров</option>
+      <option value="50">50 товаров</option>
+      <option value="100">100 товаров</option>
+      <option value="160">160 товаров</option>
+      <option value="All">Все товары</option>
+    </select>
+    <v-icon class="down-icon" icon="mdi-chevron-right"></v-icon>
+  </div>
 </template>
 
 <script>
@@ -26,4 +34,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

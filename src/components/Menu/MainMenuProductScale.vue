@@ -1,15 +1,22 @@
 <template>
   <h3 class="menu-item_header">Масштаб</h3>
   <v-text-field
+    class="mt-2"
     hide-details="auto"
     variant="outlined"
     density="compact"
     rounded
+    append-inner-icon="mdi-magnify"
     @change="onInput"
+    v-model="scaleFilter"
   ></v-text-field>
   <div class="scale-views">
-    <div class="scale-view_value" v-for="scale in scaleViews" :key="scale">
-      <menu-item :label="scale" :items-count="12" />
+    <div
+      class="companies-filter_item"
+      v-for="scale in filteredScales"
+      :key="scale"
+    >
+      <menu-item :label="scale" :items-count="12" @set-item-filter="onInput" />
     </div>
   </div>
 </template>
@@ -30,12 +37,20 @@ export default {
         '1:43',
         '1:16',
       ],
+      scaleFilter: '',
     };
   },
   methods: {
     onInput(search) {
       // TODO:create
       console.log('Method not implemented', search);
+    },
+  },
+  computed: {
+    filteredScales() {
+      return this.scaleViews.filter((scale) =>
+        scale.toLowerCase().includes(this.scaleFilter.toLowerCase())
+      );
     },
   },
 };

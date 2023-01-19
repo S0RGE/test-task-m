@@ -7,6 +7,7 @@
         v-for="product in paginatedProducts"
         :key="product.id"
         :product="product"
+        :isInCart="isInCart(product)"
       />
     </div>
   </div>
@@ -46,6 +47,9 @@ export default {
       });
 
       return result;
+    },
+    isInCart(product) {
+      return !!this.cart.find((p) => p.id === product.id);
     },
   },
   computed: {
@@ -95,6 +99,9 @@ export default {
     products() {
       return this.$store.getters.getProducts;
     },
+    cart() {
+      return this.$store.getters.getCart;
+    },
   },
 };
 </script>
@@ -110,5 +117,6 @@ export default {
     grid-template-columns: repeat(auto-fit, 260px);
     gap: 40px 32px;
   }
+  margin-bottom: 30px;
 }
 </style>

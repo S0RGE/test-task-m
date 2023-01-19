@@ -22,6 +22,9 @@ export default createStore({
     getFilters: (state) => state.filters,
   },
   actions: {
+    TOGGLE_CARD: ({ commit }, productId) => {
+      commit('TOGGLE_CARD', productId);
+    },
     ADD_FILTERS: ({ commit }, filters) => {
       commit('ADD_FILTERS', filters);
     },
@@ -42,6 +45,14 @@ export default createStore({
     },
   },
   mutations: {
+    TOGGLE_CARD: (state, productId) => {
+      const product = state.cart.find((p) => p?.id === productId);
+      if (!product) {
+        state.cart.push(state.products.find((p) => p.id === productId));
+      } else {
+        state.cart = state.cart.filter((p) => p.id !== productId);
+      }
+    },
     ADD_FILTERS: (state, filters) => {
       state.filters = filters;
     },

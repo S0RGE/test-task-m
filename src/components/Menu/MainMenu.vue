@@ -61,7 +61,7 @@ export default {
         updatedFilters = { ...updatedFilters, category: '' };
       } else {
         updatedFilters = {
-          ...this.filters,
+          ...updatedFilters,
           category: this.categories[categoryIndex],
         };
       }

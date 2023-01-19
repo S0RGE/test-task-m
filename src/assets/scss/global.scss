@@ -73,6 +73,12 @@ $color-secondary-grey: #bdbdbd !global;
 
 //          CATEGORIES
 
+.main-menu-category {
+  .main-menu_header {
+    margin-bottom: 24px;
+  }
+}
+
 .product-categories {
   display: flex;
   flex-direction: column;
@@ -87,6 +93,9 @@ $color-secondary-grey: #bdbdbd !global;
     &.active {
       color: #39b6d1;
     }
+  }
+  .product-category_button + .product-category_button {
+    margin-top: 16px;
   }
 }
 

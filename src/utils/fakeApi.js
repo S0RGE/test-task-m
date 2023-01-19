@@ -34,6 +34,18 @@ export const getCompanies = () => {
   ];
 };
 
+export const getScales = () => {
+  return [
+    { value: 24 },
+    { value: 6 },
+    { value: 12 },
+    { value: 9 },
+    { value: 32 },
+    { value: 45 },
+    { value: 43 },
+  ];
+};
+
 function createProducts() {
   const products = [];
   const quantity = 133;
@@ -53,6 +65,7 @@ function createProducts() {
         getCategories()[Math.floor(Math.random() * getCategories().length)],
       company:
         getCompanies()[Math.floor(Math.random() * getCompanies().length)],
+      scale: getScales()[Math.floor(Math.random() * getScales().length)],
     });
   }
 

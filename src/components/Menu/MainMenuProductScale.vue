@@ -9,25 +9,26 @@
   ></v-text-field>
   <div class="scale-views">
     <div class="scale-view_value" v-for="scale in scaleViews" :key="scale">
-      <input type="checkbox" />
-      1:{{ scale.value }}
+      <menu-item :label="scale" :items-count="12" />
     </div>
   </div>
 </template>
 
 <script>
+import MenuItem from './MenuItem.vue';
 export default {
+  components: { MenuItem },
   data() {
     return {
       scaleViews: [
-        { value: 24 },
-        { value: 6 },
-        { value: 12 },
-        { value: 9 },
-        { value: 32 },
-        { value: 45 },
-        { value: 43 },
-        { value: 16 },
+        '1:24',
+        '1:6',
+        '1:12',
+        '1:9',
+        '1:32',
+        '1:45',
+        '1:43',
+        '1:16',
       ],
     };
   },

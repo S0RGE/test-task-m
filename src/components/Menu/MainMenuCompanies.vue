@@ -16,8 +16,8 @@
     >
       <menu-item
         :items-count="getCompanyProductCount(company)"
-        :company="company"
-        @set-company-filter="setCompanyFilter"
+        :label="company"
+        @set-item-filter="setCompanyFilter"
       />
     </div>
   </div>
@@ -51,7 +51,6 @@ export default {
     },
     getCompanyProductCount(company) {
       const result = this.products.reduce((acc, item) => {
-        // debugger;
         if (item.company === company) {
           return acc + 1;
         }

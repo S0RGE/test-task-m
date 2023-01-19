@@ -1,13 +1,13 @@
 <template>
   <v-checkbox
-    v-model="companyEnters"
+    v-model="itemEnters"
     color="red"
     value="false"
-    inline="true"
+    :inline="true"
     hide-details="true"
-    density="true"
-    @click="setCompanyFilter"
-    :label="company"
+    density="compact"
+    @click="setItemFilter"
+    :label="label"
   ></v-checkbox>
   <span> {{ itemsCount }} </span>
 </template>
@@ -15,27 +15,26 @@
 <script>
 export default {
   props: {
-    company: {
+    label: {
       type: String,
     },
     itemsCount: {
-      type: String,
+      type: Number,
     },
   },
   emits: {
-    'set-company-filter': (value) => typeof value === 'object',
+    'set-item-filter': (value) => typeof value === 'object',
   },
   data() {
     return {
-      companyEnters: false,
+      itemEnters: false,
     };
   },
   methods: {
-    setCompanyFilter() {
-      this.$emit('set-company-filter', {
-        checked: this.companyEnters,
-        index: this.index,
-        name: this.company,
+    setItemFilter() {
+      this.$emit('set-item-filter', {
+        checked: this.itemEnters,
+        name: this.label,
       });
     },
   },
@@ -52,5 +51,9 @@ export default {
   line-height: 20px;
   color: #333333;
   opacity: 1;
+}
+
+.v-input--density-compact {
+  --v-input-control-height: auto;
 }
 </style>

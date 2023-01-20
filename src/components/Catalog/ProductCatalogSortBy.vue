@@ -12,11 +12,19 @@
       >
     </div>
     <div class="sort-by_scale">
-      <div class="sort_scale_max" @click="setPageScale('maxScale')">
-        <div v-for="n in 9" :key="n"></div>
+      <div
+        class="sort_scale_max"
+        :class="{ active: selectedScale === 'maxScale' }"
+        @click="setPageScale('maxScale')"
+      >
+        <div class="sort_scale-item" v-for="n in 9" :key="n"></div>
       </div>
-      <div class="sort_scale_min" @click="setPageScale('minScale')">
-        <div v-for="n in 4" :key="n"></div>
+      <div
+        class="sort_scale_min"
+        :class="{ active: selectedScale === 'minScale' }"
+        @click="setPageScale('minScale')"
+      >
+        <div class="sort_scale-item" v-for="n in 4" :key="n"></div>
       </div>
     </div>
   </div>
@@ -27,6 +35,7 @@ export default {
   data() {
     return {
       selectedSort: '',
+      selectedScale: 'minScale',
       sortItems: [
         { name: 'messages', value: 'Популярности' },
         { name: 'raiting', value: 'Рейтингу' },
@@ -52,6 +61,7 @@ export default {
       }
     },
     setPageScale(scale) {
+      this.selectedScale = scale;
       this.$emit('set-page-scale', scale);
     },
   },
@@ -112,9 +122,12 @@ export default {
       grid-template-rows: repeat(3, 1fr);
 
       grid-gap: 1px;
-      div {
-        background-color: #279fb9;
+      .sort_scale-item {
+        background-color: #e0e0e0;
         border-radius: 1px;
+      }
+      &.active .sort_scale-item {
+        background-color: #279fb9;
       }
     }
 
@@ -128,9 +141,13 @@ export default {
       grid-template-rows: repeat(2, 1fr);
 
       grid-gap: 2px;
-      div {
-        background-color: #279fb9;
+      & .sort_scale-item {
+        background-color: #e0e0e0;
         border-radius: 1px;
+      }
+
+      &.active .sort_scale-item {
+        background-color: #279fb9;
       }
     }
   }

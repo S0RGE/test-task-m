@@ -75,7 +75,12 @@ export default {
 <style lang="scss">
 .product-card_wrapper {
   position: relative;
-  min-height: 382px;
+}
+
+.maxScale {
+  .product-card_wrapper {
+    max-width: 202px;
+  }
 }
 
 .product-card {
@@ -120,7 +125,7 @@ export default {
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 8px 12px;
+      padding: 8px 12px 0 12px;
       margin-bottom: 8px;
       gap: 10px;
 
@@ -148,8 +153,9 @@ export default {
 
   .product-card_image {
     width: 100%;
-    height: 202px;
+    height: 50%;
     img {
+      width: 100%;
       border-top-right-radius: 16px;
       border-top-left-radius: 16px;
     }

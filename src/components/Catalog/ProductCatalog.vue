@@ -1,14 +1,19 @@
 <template>
   <div class="product-catalog_wrapper">
     <product-catalog-filter-display :filters="filters" />
-    <product-catalog-sort-by @set-sort-by="setSortBy" />
-    <div class="product-catalog">
-      <product-catalog-card
-        v-for="product in paginatedProducts"
-        :key="product.id"
-        :product="product"
-        :isInCart="isInCart(product)"
-      />
+    <product-catalog-sort-by
+      @set-sort-by="setSortBy"
+      @set-page-scale="setPageScale"
+    />
+    <div class="minScale" ref="productCatalog">
+      <div class="product-catalog">
+        <product-catalog-card
+          v-for="product in paginatedProducts"
+          :key="product.id"
+          :product="product"
+          :isInCart="isInCart(product)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -50,6 +55,14 @@ export default {
     },
     isInCart(product) {
       return !!this.cart.find((p) => p.id === product.id);
+    },
+    setPageScale(scale) {
+      console.log(scale);
+      const productCatalog = this.$refs.productCatalog;
+      if (productCatalog.className == scale) {
+        return;
+      }
+      productCatalog.className = scale;
     },
   },
   computed: {
@@ -108,15 +121,37 @@ export default {
 
 <style lang="scss">
 .product-catalog_wrapper {
+  flex-grow: 2;
   display: flex;
   flex-direction: column;
   width: 100%;
-  .product-catalog {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 260px);
-    gap: 40px 32px;
-  }
+
   margin-bottom: 30px;
+
+  .minScale,
+  .maxScale {
+    min-width: 100%;
+  }
+}
+
+.minScale .product-catalog {
+  grid-template-columns: repeat(auto-fit, 260px);
+  gap: 40px 32px;
+  .product-card_wrapper {
+    min-height: 382px;
+  }
+}
+
+.maxScale .product-catalog {
+  grid-template-columns: repeat(auto-fit, 202px);
+  gap: 40px 32px;
+  .product-card_wrapper {
+    min-height: 328px;
+  }
+}
+
+.product-catalog {
+  width: 100%;
+  display: grid;
 }
 </style>

@@ -15,6 +15,15 @@
         />
       </div>
     </div>
+    <div class="catalog-pagination">
+      <v-pagination
+        v-model="page"
+        :length="paginatedPageLength"
+        first-aria-label="Prev"
+        next-aria-label="Next"
+        :total-visible="7"
+      ></v-pagination>
+    </div>
   </div>
 </template>
 
@@ -99,6 +108,9 @@ export default {
         this.endIndex
       );
     },
+    paginatedPageLength() {
+      return Math.ceil(this.products.length / this.productsPerPage);
+    },
     startIndex() {
       return (this.page - 1) * this.productsPerPage;
     },
@@ -152,5 +164,50 @@ export default {
 .product-catalog {
   width: 100%;
   display: grid;
+}
+
+.catalog-pagination {
+  margin-top: 56px;
+  margin-left: 114px;
+
+  .v-pagination__list {
+    justify-content: flex-start;
+  }
+
+  .v-pagination__prev .v-btn__content::after {
+    content: 'Предыдущая';
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+    margin-right: 8em;
+  }
+
+  .v-pagination__next .v-btn__content::before {
+    content: 'Следующая';
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+  }
+
+  .v-pagination__next {
+    margin-left: 4em;
+  }
+  .v-pagination .v-btn {
+    width: 29px;
+    height: 32px;
+    border-radius: 7px;
+  }
+
+  li.v-pagination__item--is-active button {
+    background: #279fb9 !important;
+    border-radius: 7px;
+    .v-btn__content {
+      color: #fff !important;
+    }
+  }
 }
 </style>

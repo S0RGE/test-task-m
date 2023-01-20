@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     productsCount() {
-      return this.products.length;
+      return this.$store.getters.getProducts.length;
     },
   },
 };

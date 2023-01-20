@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     setSort(sortBy, index) {
+      // TODO: ascending/descending
       if (this.selectedSort === index) {
         this.selectedSort = null;
         this.$emit('set-sort-by', {});
@@ -76,10 +77,18 @@ export default {
   .sort-by_item {
     color: #333333; // $color-primary-black;
     cursor: pointer;
+    position: relative;
   }
 
   .sort-by_item.active {
     color: #279fb9;
+    margin-right: 16px;
+  }
+
+  .sort-by_item.active::after {
+    content: url('@/assets/images/arrow.png');
+    position: absolute;
+    right: -14px;
   }
 
   .sort-by_item + .sort-by_item {

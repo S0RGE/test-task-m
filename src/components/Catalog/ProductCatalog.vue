@@ -57,7 +57,6 @@ export default {
       return !!this.cart.find((p) => p.id === product.id);
     },
     setPageScale(scale) {
-      console.log(scale);
       const productCatalog = this.$refs.productCatalog;
       if (productCatalog.className == scale) {
         return;
@@ -144,7 +143,7 @@ export default {
 
 .maxScale .product-catalog {
   grid-template-columns: repeat(auto-fit, 202px);
-  gap: 40px 32px;
+  gap: 70px 32px;
   .product-card_wrapper {
     min-height: 328px;
   }

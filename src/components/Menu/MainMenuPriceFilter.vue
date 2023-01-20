@@ -4,7 +4,7 @@
       <span class="price-display_text">От</span>
       <input
         class="price-display_value"
-        v-model="priceRange[0]"
+        v-model.lazy="priceRange[0]"
         @input="setPriceRange"
       />
     </div>
@@ -12,7 +12,7 @@
       <span class="price-display_text">До</span>
       <input
         class="price-display_value"
-        v-model="priceRange[1]"
+        v-model.lazy="priceRange[1]"
         @input="setPriceRange"
       />
     </div>
@@ -20,7 +20,7 @@
   <div class="price-slider">
     <v-range-slider
       :step="1"
-      v-model="priceRange"
+      v-model.lazy="priceRange"
       :min="0"
       :max="10000"
       color="#279fb9"

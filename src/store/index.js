@@ -22,6 +22,9 @@ export default createStore({
     getFilters: (state) => state.filters,
   },
   actions: {
+    DELETE_FILTER: ({ commit }, filter) => {
+      commit('DELETE_FILTER', filter);
+    },
     TOGGLE_CARD: ({ commit }, productId) => {
       commit('TOGGLE_CARD', productId);
     },
@@ -45,6 +48,20 @@ export default createStore({
     },
   },
   mutations: {
+    DELETE_FILTER: (state, filter) => {
+      if (typeof state.filters[filter.name] === 'string') {
+        state.filters[filter.name] = '';
+      } else if (filter.name === 'priceLimit') {
+        state.filters.priceLimit = [0, 10000];
+      } else if (Array.isArray(state.filters[filter.name])) {
+        const filterIndex = state.filters[filter.name].findIndex(
+          (f) => f === filter.value
+        );
+        if (filterIndex !== -1) {
+          state.filters[filter.name].splice(filterIndex, 1);
+        }
+      }
+    },
     TOGGLE_CARD: (state, productId) => {
       const product = state.cart.find((p) => p?.id === productId);
       if (!product) {

@@ -20,9 +20,7 @@ export default {
   },
   methods: {
     deleteFilter(filter) {
-      const editedFilters = { ...this.filters };
-
-      console.log(filter, editedFilters);
+      this.$store.dispatch('DELETE_FILTER', filter);
     },
   },
   computed: {

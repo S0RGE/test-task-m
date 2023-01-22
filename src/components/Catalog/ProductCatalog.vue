@@ -55,12 +55,9 @@ export default {
       this.sortBy = sortBy;
     },
     sortProducts(products) {
-      let result = [...products];
-      result.sort((a, b) => {
+      return products.sort((a, b) => {
         return a[this.sortBy.name] - b[this.sortBy.name];
       });
-
-      return result;
     },
     isInCart(product) {
       return !!this.cart.find((p) => p.id === product.id);
@@ -109,7 +106,7 @@ export default {
       );
     },
     paginatedPageLength() {
-      return Math.ceil(this.products.length / this.productsPerPage);
+      return Math.ceil(this.filteredProducts.length / this.productsPerPage);
     },
     startIndex() {
       return (this.page - 1) * this.productsPerPage;

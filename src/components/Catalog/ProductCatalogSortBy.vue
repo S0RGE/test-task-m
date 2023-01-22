@@ -46,7 +46,7 @@ export default {
     };
   },
   emits: {
-    'set-sort-by': (value) => typeof value === 'string',
+    'set-sort-by': (value) => typeof value === 'object',
     'set-page-scale': (value) => typeof value === 'string',
   },
   methods: {

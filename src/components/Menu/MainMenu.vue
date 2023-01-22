@@ -65,7 +65,6 @@ export default {
           category: this.categories[categoryIndex],
         };
       }
-      debugger;
       this.updateFilters(updatedFilters);
     },
     setInstockFilter(instock) {

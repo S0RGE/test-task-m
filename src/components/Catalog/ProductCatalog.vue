@@ -152,13 +152,14 @@ export default {
 
 .maxScale .product-catalog {
   grid-template-columns: repeat(auto-fit, 202px);
-  gap: 70px 32px;
+  row-gap: 70px;
   .product-card_wrapper {
     min-height: 328px;
   }
 }
 
 .product-catalog {
+  justify-content: center;
   width: 100%;
   display: grid;
 }

@@ -14,9 +14,7 @@
         <div class="product-card_price">{{ product.price }} &#8381;</div>
         <p>{{ product.name }}</p>
         <div class="product-card_scale">
-          <span class="product-card_scale_badge"
-            >1:{{ product.scale.value }}</span
-          >
+          <span class="product-card_scale_badge">{{ product.scale }}</span>
           <span>AVD Models </span>
         </div>
         <div class="product-card_rating">

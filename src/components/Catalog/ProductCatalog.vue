@@ -97,6 +97,12 @@ export default {
           product.price <= this.filters.priceLimit[1] &&
           product.price >= this.filters.priceLimit[0]
       );
+
+      // Фильтр по размеру
+      if (this.filters.scales.length)
+        result = result.filter((product) =>
+          this.filters.scales.includes(product.scale)
+        );
       return result;
     },
     paginatedProducts() {

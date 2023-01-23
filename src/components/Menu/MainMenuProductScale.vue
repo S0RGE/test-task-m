@@ -27,31 +27,29 @@ export default {
   components: { MenuItem },
   data() {
     return {
-      scaleViews: [
-        '1:24',
-        '1:6',
-        '1:12',
-        '1:9',
-        '1:32',
-        '1:45',
-        '1:43',
-        '1:16',
-      ],
       scaleFilter: '',
     };
   },
+  emits: {
+    'set-filter-scale': (value) => typeof value === 'object',
+  },
   methods: {
-    onInput(search) {
-      // TODO:create
-      console.log('Method not implemented', search);
+    onInput(scale) {
+      this.$emit('set-filter-scale', scale);
     },
   },
   computed: {
     filteredScales() {
-      return this.scaleViews.filter((scale) =>
+      return this.scales.filter((scale) =>
         scale.toLowerCase().includes(this.scaleFilter.toLowerCase())
       );
     },
+    scales() {
+      return this.$store.getters.getScales;
+    },
+  },
+  created() {
+    this.$store.dispatch('GET_SCALES');
   },
 };
 </script>

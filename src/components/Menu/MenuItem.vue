@@ -2,11 +2,10 @@
   <v-checkbox
     v-model="itemEnters"
     color="red"
-    value="false"
     :inline="true"
     hide-details="true"
     density="compact"
-    @click="setItemFilter"
+    @change="setItemFilter"
     :label="label"
   ></v-checkbox>
   <span> {{ itemsCount }} </span>

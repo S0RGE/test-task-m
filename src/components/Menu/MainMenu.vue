@@ -11,7 +11,7 @@
       />
     </div>
     <div class="product-filter scale">
-      <main-menu-product-scale />
+      <main-menu-product-scale @set-filter-scale="setFilterScale" />
     </div>
     <div class="product-filter price-filter">
       <main-menu-price-filter @set-price-range="setPriceRange" />
@@ -103,6 +103,17 @@ export default {
     },
     setProductPerPage(quantity) {
       this.$emit('set-product-per-page', quantity);
+    },
+    setFilterScale(scale) {
+      const updatedFilters = this.filters;
+      if (scale.checked) {
+        updatedFilters.scales.push(scale.name);
+      } else {
+        const index = updatedFilters.scales.findIndex((s) => s === scale.name);
+        if (index === -1) return;
+        updatedFilters.scales.splice(index, 1);
+      }
+      this.updateFilters(updatedFilters);
     },
     updateFilters(filters) {
       this.$store.dispatch('ADD_FILTERS', filters);

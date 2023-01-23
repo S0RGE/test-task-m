@@ -1,5 +1,10 @@
 import { createStore } from 'vuex';
-import { getCategories, getCompanies, getProducts } from '@/utils/fakeApi';
+import {
+  getCategories,
+  getCompanies,
+  getProducts,
+  getScales,
+} from '@/utils/fakeApi';
 
 export default createStore({
   state: {
@@ -7,11 +12,13 @@ export default createStore({
     products: [],
     categories: [],
     companies: [],
+    scales: [],
     filters: {
       category: '',
       companies: [],
       priceLimit: [0, 10000],
       inStock: false,
+      scales: [],
     },
   },
   getters: {
@@ -20,8 +27,13 @@ export default createStore({
     getCategories: (state) => state.categories,
     getCompanies: (state) => state.companies,
     getFilters: (state) => state.filters,
+    getScales: (state) => state.scales,
   },
   actions: {
+    GET_SCALES: ({ commit }) => {
+      const scales = getScales();
+      commit('GET_SCALES', scales);
+    },
     DELETE_FILTER: ({ commit }, filter) => {
       commit('DELETE_FILTER', filter);
     },
@@ -81,6 +93,9 @@ export default createStore({
     },
     GET_PRODUCTS: (state, products) => {
       state.products = products;
+    },
+    GET_SCALES: (state, scales) => {
+      state.scales = scales;
     },
     ADD_PROUCT_TO_CART: (state, product) => {
       state.cart.push(product);

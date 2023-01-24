@@ -150,6 +150,7 @@ export default {
 
 .minScale .product-catalog {
   grid-template-columns: repeat(auto-fit, 260px);
+
   gap: 40px 32px;
   .product-card_wrapper {
     min-height: 382px;
@@ -158,16 +159,16 @@ export default {
 
 .maxScale .product-catalog {
   grid-template-columns: repeat(auto-fit, 202px);
-  row-gap: 70px 32px;
+  gap: 70px 32px;
   .product-card_wrapper {
     min-height: 328px;
   }
 }
 
 .product-catalog {
-  justify-content: space-between;
   width: 100%;
   display: grid;
+  justify-content: space-between;
 }
 
 .catalog-pagination {

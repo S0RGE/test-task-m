@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       page: 1,
-      sortBy: '',
+      sortBy: null,
     };
   },
   props: {
@@ -55,8 +55,17 @@ export default {
       this.sortBy = sortBy;
     },
     sortProducts(products) {
+      if (!this.sortBy) return products;
       return products.sort((a, b) => {
-        return a[this.sortBy.name] - b[this.sortBy.name];
+        return a[this.sortBy.name] > b[this.sortBy.name]
+          ? this.sortBy.type === 'asc'
+            ? 1
+            : -1
+          : a[this.sortBy.name] < b[this.sortBy.name]
+          ? this.sortBy.type === 'asc'
+            ? -1
+            : 1
+          : 0;
       });
     },
     isInCart(product) {

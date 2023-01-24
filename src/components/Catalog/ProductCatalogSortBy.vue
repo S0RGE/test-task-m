@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       selectedSort: '',
+      sortType: 'asc',
       selectedScale: 'minScale',
       sortItems: [
         { name: 'messages', value: 'Популярности' },
@@ -53,11 +54,12 @@ export default {
     setSort(sortBy, index) {
       // TODO: ascending/descending
       if (this.selectedSort === index) {
-        this.selectedSort = null;
-        this.$emit('set-sort-by', {});
+        this.sortType = this.sortType === 'asc' ? 'desc' : 'asc';
+        this.$emit('set-sort-by', { ...sortBy, type: this.sortType });
       } else {
         this.selectedSort = index;
-        this.$emit('set-sort-by', sortBy);
+        this.sortType = 'asc';
+        this.$emit('set-sort-by', { ...sortBy, type: this.sortType });
       }
     },
     setPageScale(scale) {

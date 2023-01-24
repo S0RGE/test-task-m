@@ -4,7 +4,7 @@
       <span class="sort-by_title">Сортировать по: </span>
       <span
         class="sort-by_item"
-        :class="{ active: index === selectedSort }"
+        :class="{ active: index === selectedSort, ascend: sortType === 'asc' }"
         @click="setSort(item, index)"
         v-for="(item, index) in sortItems"
         :key="item.name"
@@ -101,6 +101,10 @@ export default {
     content: url('@/assets/images/arrow.png');
     position: absolute;
     right: -14px;
+  }
+
+  .sort-by_item.ascend.active::after {
+    transform: rotate(180deg);
   }
 
   .sort-by_item + .sort-by_item {

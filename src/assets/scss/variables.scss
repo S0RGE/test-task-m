@@ -1,3 +1,5 @@
-$color-primary-default: #279fb9 !global;
-$color-primary-black: #333333 !global;
-$color-secondary-grey: #bdbdbd !global;
+:root {
+  --color-primary-default: #279fb9;
+  --color-primary-black: #333333;
+  --color-secondary-grey: #bdbdbd;
+}

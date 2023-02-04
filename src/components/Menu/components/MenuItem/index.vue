@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'MenuItem',
   props: {
     label: {
       type: String,
@@ -41,18 +42,5 @@ export default {
 </script>
 
 <style lang="scss">
-.mdi-checkbox-marked::before {
-  color: #279fb9;
-}
-.v-label.v-label--clickable {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #333333;
-  opacity: 1;
-}
-
-.v-input--density-compact {
-  --v-input-control-height: auto;
-}
+@use './style.scss';
 </style>

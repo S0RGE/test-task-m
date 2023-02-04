@@ -11,11 +11,12 @@
 </template>
 
 <script>
-import CatalogHeader from '@/components/CatalogHeader.vue';
-import MainMenu from '@/components/Menu/MainMenu.vue';
-import ProductCatalog from '@/components/Catalog/ProductCatalog.vue';
+import CatalogHeader from '@/components/CatalogHeader';
+import MainMenu from '@/components/Menu';
+import ProductCatalog from '@/components/ProductCatalog';
 
 export default {
+  name: 'HomeView',
   data() {
     return {
       productsPerPage: 10,
@@ -46,4 +47,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@use './style.scss';
+</style>

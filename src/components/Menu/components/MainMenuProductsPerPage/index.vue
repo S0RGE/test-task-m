@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'MainMenuProductsPerPage',
   data() {
     return {
       productsPerPage: 10,

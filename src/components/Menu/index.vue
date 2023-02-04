@@ -35,14 +35,15 @@
 </template>
 
 <script>
-import MainMenuCategory from './MainMenuCategory.vue';
-import MainMenuCompanies from './MainMenuCompanies.vue';
-import MainMenuPriceFilter from './MainMenuPriceFilter.vue';
-import MainMenuProductInstock from './MainMenuProductInstock.vue';
-import MainMenuProductScale from './MainMenuProductScale.vue';
-import MainMenuProductsPerPage from './MainMenuProductsPerPage.vue';
+import MainMenuCategory from './components/MainMenuCategory';
+import MainMenuCompanies from './components/MainMenuCompanies';
+import MainMenuPriceFilter from './components/MainMenuPriceFilter';
+import MainMenuProductInstock from './components/MainMenuProductInstock';
+import MainMenuProductScale from './components/MainMenuProductScale';
+import MainMenuProductsPerPage from './components/MainMenuProductsPerPage';
 
 export default {
+  name: 'MainMenu',
   components: {
     MainMenuCategory,
     MainMenuCompanies,

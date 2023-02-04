@@ -1,0 +1,32 @@
+.price-display {
+  display: flex;
+  column-gap: 12px;
+
+  .price-display_text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #757575;
+    margin-bottom: 4px;
+  }
+
+  .price-display_item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-display_value {
+    border: 1px solid #e0e0e0;
+    border-radius: 9px;
+
+    width: 98px;
+    height: 36px;
+
+    padding: 8px 12px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

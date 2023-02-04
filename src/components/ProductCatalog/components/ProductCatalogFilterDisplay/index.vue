@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'ProductCatalogFilterDisplay',
   props: {
     filters: {
       type: Object,
@@ -54,35 +55,5 @@ export default {
 </script>
 
 <style lang="scss">
-.filter-display {
-  margin-bottom: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  .filter-display_item {
-    padding: 5px 12px;
-
-    height: 30px;
-    // margin-bottom: 8px;
-
-    background: #ededed;
-    border-radius: 16px;
-
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-
-    color: #333333;
-
-    .display-close {
-      font-size: 1.7em;
-      vertical-align: bottom;
-      margin-left: 7px;
-      line-height: 20px;
-      color: #333333;
-      cursor: pointer;
-    }
-  }
-}
+@use './style.scss';
 </style>

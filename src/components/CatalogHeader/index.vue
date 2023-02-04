@@ -6,8 +6,9 @@
 </template>
 
 <script>
-import BreadCrumbs from './BreadCrumbs.vue';
+import BreadCrumbs from '@/components/BreadCrumbs';
 export default {
+  name: 'CatalogHeader',
   data() {
     return {
       productCount: 0,
@@ -20,4 +21,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@use './style.scss';
+</style>

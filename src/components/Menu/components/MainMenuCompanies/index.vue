@@ -25,9 +25,10 @@
 </template>
 
 <script>
-import MenuItem from './MenuItem.vue';
+import MenuItem from '../MenuItem';
 
 export default {
+  name: 'MainMenuCompanies',
   components: { MenuItem },
   data() {
     return {

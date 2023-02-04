@@ -22,8 +22,9 @@
 </template>
 
 <script>
-import MenuItem from './MenuItem.vue';
+import MenuItem from '../MenuItem';
 export default {
+  name: 'MainMenuProductScale',
   components: { MenuItem },
   data() {
     return {

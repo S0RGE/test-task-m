@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'MainMenuCategory',
   mounted() {
     this.$store.dispatch('GET_CATEGORIES');
   },

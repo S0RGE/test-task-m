@@ -28,11 +28,12 @@
 </template>
 
 <script>
-import ProductCatalogCard from './ProductCatalogCard.vue';
-import ProductCatalogFilterDisplay from './ProductCatalogFilterDisplay.vue';
-import ProductCatalogSortBy from './ProductCatalogSortBy.vue';
+import ProductCatalogCard from './components/ProductCatalogCard';
+import ProductCatalogFilterDisplay from './components/ProductCatalogFilterDisplay';
+import ProductCatalogSortBy from './components/ProductCatalogSortBy';
 
 export default {
+  name: 'ProductCatalog',
   data() {
     return {
       page: 1,

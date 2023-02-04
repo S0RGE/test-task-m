@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'BreadCrumbs',
   data: () => ({
     items: [
       {
@@ -41,13 +42,5 @@ export default {
 </script>
 
 <style lang="scss">
-.bread-crumbs {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.v-breadcrumbs-item--disabled {
-  color: #bdbdbd;
-}
+@use './style.scss';
 </style>

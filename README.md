@@ -1,4 +1,4 @@
-# medima-test
+# test task for company
 
 ## Project setup
 ```

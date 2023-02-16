@@ -6,6 +6,8 @@ import {
   getScales,
 } from '@/utils/fakeApi';
 
+import { deleteFilters } from './service';
+
 export default createStore({
   state: {
     cart: [],
@@ -61,18 +63,8 @@ export default createStore({
   },
   mutations: {
     DELETE_FILTER: (state, filter) => {
-      if (typeof state.filters[filter.name] === 'string') {
-        state.filters[filter.name] = '';
-      } else if (filter.name === 'priceLimit') {
-        state.filters.priceLimit = [0, 10000];
-      } else if (Array.isArray(state.filters[filter.name])) {
-        const filterIndex = state.filters[filter.name].findIndex(
-          (f) => f === filter.value
-        );
-        if (filterIndex !== -1) {
-          state.filters[filter.name].splice(filterIndex, 1);
-        }
-      }
+      // TODO: don't set state.filters as parametr
+      state.filters = deleteFilters(filter, state.filters);
     },
     TOGGLE_CARD: (state, productId) => {
       const product = state.cart.find((p) => p?.id === productId);

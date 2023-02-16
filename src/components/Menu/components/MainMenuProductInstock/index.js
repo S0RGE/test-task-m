@@ -1,3 +1,3 @@
-import MainMenuProductInstock from './index.vue';
+import MainMenuProductInstock from './MainMenuProductInstock.vue';
 
 export default MainMenuProductInstock;

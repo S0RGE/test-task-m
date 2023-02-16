@@ -1,3 +1,3 @@
-import MainMenuProductsPerPage from './index.vue';
+import MainMenuProductsPerPage from './MainMenuProductsPerPage.vue';
 
 export default MainMenuProductsPerPage;

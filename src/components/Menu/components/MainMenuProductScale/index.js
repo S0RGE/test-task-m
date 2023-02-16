@@ -1,3 +1,3 @@
-import MainMenuProductScale from './index.vue';
+import MainMenuProductScale from './MainMenuProductScale.vue';
 
 export default MainMenuProductScale;

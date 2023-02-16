@@ -1,3 +1,3 @@
-import CatalogHeader from './index.vue';
+import CatalogHeader from './CatalogHeader.vue';
 
 export default CatalogHeader;

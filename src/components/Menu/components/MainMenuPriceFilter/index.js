@@ -1,3 +1,3 @@
-import MainMenuPriceFilter from './index.vue';
+import MainMenuPriceFilter from './MainMenuPriceFilter.vue';
 
 export default MainMenuPriceFilter;

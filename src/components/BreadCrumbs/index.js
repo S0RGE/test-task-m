@@ -1,3 +1,3 @@
-import BreadCrumbs from './index.vue';
+import BreadCrumbs from './BreadCrumbs.vue';
 
 export default BreadCrumbs;

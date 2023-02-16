@@ -1,3 +1,3 @@
-import MainMenuCompanies from './index.vue';
+import MainMenuCompanies from './MainMenuCompanies.vue';
 
 export default MainMenuCompanies;

@@ -1,3 +1,3 @@
-import MainMenuCategory from './index.vue';
+import MainMenuCategory from './MainMenuCategory.vue';
 
 export default MainMenuCategory;

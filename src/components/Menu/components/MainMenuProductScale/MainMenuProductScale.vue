@@ -55,4 +55,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@use './style.scss';
+</style>

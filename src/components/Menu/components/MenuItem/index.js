@@ -1,3 +1,3 @@
-import MenuItem from './index.vue';
+import MenuItem from './MenuItem.vue';
 
 export default MenuItem;
